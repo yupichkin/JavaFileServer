@@ -7,6 +7,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+//class that handles delete command
 public class DeleteHandler implements CommandHandler {
     @Override
     public void handleInput(String msg, DataInputStream input, DataOutputStream output) {

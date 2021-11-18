@@ -4,8 +4,8 @@ import java.io.File;
 
 public final class Constants {
     public static final int OK = 200;
-    public static final int FORBIDDEN = 403;
     public static final int NOT_FOUND = 404;
+    //codes that client expects from server
 
     public static final String PUT_COMMAND = "PUT";
     public static final String GET_COMMAND = "GET";
@@ -13,6 +13,7 @@ public final class Constants {
     public static final String EXIT_COMMAND = "EXIT";
     public static final String BY_NAME_COMMAND = "BY_NAME";
     public static final String BY_ID_COMMAND = "BY_ID";
+    //command words that client sends to server
 
     public static final String MAIN_MENU = "Enter action (1 - get a file, 2 - create a file, 3 - delete a file):";
     public static final String NAME_OR_ID = "Do you want to get the file by name or by id (1 - name, 2 - id):";
@@ -33,9 +34,10 @@ public final class Constants {
 
     public static final String EXIT = "Good bye!";
     public static final String REQUEST_SENT = "The request was sent.";
+    //string outputs for communication with user
 
     public static final String dataSourceFolder = System.getProperty("user.dir") + File.separator +
             //"File Server" + File.separator + "task" + File.separator + //for local testing
             "src" + File.separator + "client" + File.separator + "data";
-
+    //default folder for file source location
 }

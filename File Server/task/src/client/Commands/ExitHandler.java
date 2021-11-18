@@ -8,6 +8,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+//exit command handler
 public class ExitHandler implements CommandHandler {
     @Override
     public void handleInput(Scanner scanner, DataOutputStream output) {
@@ -16,7 +17,7 @@ public class ExitHandler implements CommandHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        View.print(Constants.EXIT);
+        View.println(Constants.EXIT);
     }
 
     @Override

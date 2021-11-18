@@ -1,9 +1,7 @@
 package server;
 
-
 import server.Commands.CommandHandler;
 import server.Commands.CommandsFactory;
-import server.Commands.GetHandler;
 
 import java.io.*;
 import java.net.*;
@@ -49,8 +47,5 @@ public class Main {
             e.printStackTrace();
         }
     }
-
-
-
 }
 

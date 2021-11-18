@@ -8,6 +8,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+//delete command handler
 public class DeleteHandler implements CommandHandler {
     @Override
     public void handleInput(Scanner scanner, DataOutputStream output) {
@@ -27,10 +28,10 @@ public class DeleteHandler implements CommandHandler {
         try {
             int receivedMsg = input.readInt();
             if(receivedMsg == Constants.OK) {
-                View.print(Constants.FILE_DELETED);
+                View.println(Constants.FILE_DELETED);
             }
             if(receivedMsg == Constants.NOT_FOUND) {
-                View.print(Constants.FILE_SERVER_NOT_FOUND);
+                View.println(Constants.FILE_SERVER_NOT_FOUND);
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,7 +1,6 @@
 package client.Commands;
 
-import client.Constants;
-
+//factory for instances that implements CommandHandler interface
 public class CommandsFactory {
     public CommandHandler create(String commandType) {
         switch (commandType) {

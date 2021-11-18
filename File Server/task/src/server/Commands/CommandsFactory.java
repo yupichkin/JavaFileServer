@@ -1,10 +1,8 @@
 package server.Commands;
 
-import server.Commands.CommandHandler;
-import server.Commands.GetHandler;
-import server.Commands.PutHandler;
 import server.Constants;
 
+//factory for producing different class instances that implements CommandHandler
 public class CommandsFactory {
     public CommandHandler create(String commandType) {
         switch (commandType) {

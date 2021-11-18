@@ -7,8 +7,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+//class that handles get command
 public class GetHandler implements CommandHandler {
-
     @Override
     public void handleInput(String msg, DataInputStream input, DataOutputStream output) {
         byte [] fileAsByteArray = null;

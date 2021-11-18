@@ -2,28 +2,30 @@ package server;
 
 import java.io.*;
 
+//class that used for serialization instance of FileStorage
 public class SerializationUtils {
     public static final String SP = File.separator;
     public static final String pathToFolder = Constants.defaultFolderForData;
+    public static final String filename = Constants.filenameForSerialization;
 
     public static void serializeFileIdInfo(FileStorage fileStorage) throws IOException {
-        String filename = pathToFolder + SP + "idFiles.data";
+        String pathToFile = pathToFolder + SP + filename;
         try {
-            serialize(fileStorage, filename);
+            serialize(fileStorage, pathToFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void deserializeFileIdInfo() throws IOException {
-        String filename = pathToFolder + SP + "idFiles.data";
-        File file = new File(filename);
+        String pathToFile = pathToFolder + SP + filename;
+        File file = new File(pathToFile);
         FileStorage fileStorage = null;
         if(file.createNewFile()) { //returns false if file already was created
             fileStorage = FileStorage.getInstance();
         } else {
             try {
-                FileStorage.deserialize((FileStorage) deserialize(filename));
+                FileStorage.deserialize((FileStorage) deserialize(pathToFile));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

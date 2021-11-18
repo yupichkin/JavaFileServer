@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+//simple class that used for getting and saving files in source folder
 public class FileHandler {
     private final String fileFolder;
 

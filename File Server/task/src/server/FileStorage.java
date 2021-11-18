@@ -1,18 +1,16 @@
 package server;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+//class for storing file and creating and saving their IDs
 public class FileStorage implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private static FileStorage fileStorage;
-    //private static final long serialVersionUID = 1L;
     private Map<Integer, String> idAndFilenames;
     private int idCounter;
-
-    public String getStorageFolder() {
-        return storageFolder;
-    }
-
     private String storageFolder;
 
     public static void deserialize(FileStorage deserializedInstance) {
@@ -52,7 +50,6 @@ public class FileStorage implements Serializable {
     }
 
     public int saveFile(String filename, byte[] data) { //returns id of file, returns 0 if there are creating fails;
-        System.out.println("HERE TRYING TO SAVE FILE");
         File file = new File(storageFolder + File.separator + filename);
         try (FileOutputStream outputStream = new FileOutputStream(file)) {
             outputStream.write(data);
