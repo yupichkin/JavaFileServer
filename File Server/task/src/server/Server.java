@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Main {
+public class Server {
     private static final String address = "127.0.0.1";
     private static final int port = 23456;
     private static ServerSocket server;
@@ -21,18 +21,22 @@ public class Main {
         ExecutorService executorService = Executors.newCachedThreadPool();
         server = new ServerSocket(port, 50, InetAddress.getByName(address));
         while (true) {
-            Socket socket = server.accept();// accepting a new client
-            executorService.submit(() -> {
-                try (DataInputStream input = new DataInputStream(socket.getInputStream());
-                     DataOutputStream output = new DataOutputStream(socket.getOutputStream())) {
-                    handleClient(input, output);//server socket already closed and finally need to shutsown
-                } catch (IOException ignored) { }
+            try {
+                Socket socket = server.accept();
+                executorService.submit(() -> {
+                    try (DataInputStream input = new DataInputStream(socket.getInputStream());
+                         DataOutputStream output = new DataOutputStream(socket.getOutputStream())) {
+                        handleClient(input, output);//server socket already closed and finally need to shutsown
+                    } catch (IOException ignored) { }
 
-            });
+                });
+            } catch (Exception e) {
+                System.out.println("server closed");
+            }
         }
     }
 
-    private static boolean handleClient(DataInputStream input, DataOutputStream output) {
+    private static void handleClient(DataInputStream input, DataOutputStream output) {
         try {
             String receivedMsg = input.readUTF(); // reading a message
             System.out.format("Received: %s\n", receivedMsg);
@@ -42,7 +46,7 @@ public class Main {
             if (commandWord.toUpperCase(Locale.ROOT).equals(Constants.EXIT_COMMAND)) {
                 server.close();
                 SerializationUtils.serializeFileIdInfo(FileStorage.getInstance());
-                return true;
+                return;
             }
             receivedMsg = receivedMsg.replace(commandWord, "").trim(); //deleting command word from msg
 
@@ -55,8 +59,5 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
     }
 }
-
-

@@ -7,10 +7,9 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class Main {
+public class Client {
     private static final String address = "127.0.0.1";
     private static final int port = 23456;
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -37,11 +36,6 @@ public class Main {
         }
     }
 }
-
-
-
-
-
 
 
 
