@@ -23,7 +23,6 @@ public class Main {
         ) {
             View.println(Constants.MAIN_MENU);
             userInput = scanner.nextLine();
-
             CommandHandler getCommand = commandsFactory.create(userInput.trim());
             if(getCommand == null) {
                 View.println(Constants.NOT_CORRECT_MENU);

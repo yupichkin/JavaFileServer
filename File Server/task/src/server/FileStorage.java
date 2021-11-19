@@ -30,7 +30,7 @@ public class FileStorage implements Serializable {
         storageFolder = Constants.defaultFolderForData;
     }
 
-    public boolean deleteFileById(Integer id) {
+    public synchronized boolean deleteFileById(Integer id) {
         String filename = idAndFilenames.get(id);
         if(filename == null) { //no existing file
             return false;
@@ -39,17 +39,17 @@ public class FileStorage implements Serializable {
         return deleteFile(filename);
     }
 
-    public boolean deleteFileByName(String filename) { //returns false when deletions fails
+    public synchronized boolean deleteFileByName(String filename) { //returns false when deletions fails
         idAndFilenames.values().remove(filename);
         return deleteFile(filename);
     }
 
-    private boolean deleteFile(String filename) {
+    private synchronized boolean deleteFile(String filename) {
         File file = new File(storageFolder + File.separator + filename);
         return file.delete();
     }
 
-    public int saveFile(String filename, byte[] data) { //returns id of file, returns 0 if there are creating fails;
+    public synchronized int saveFile(String filename, byte[] data) { //returns id of file, returns 0 if there are creating fails;
         File file = new File(storageFolder + File.separator + filename);
         try (FileOutputStream outputStream = new FileOutputStream(file)) {
             outputStream.write(data);
@@ -61,14 +61,14 @@ public class FileStorage implements Serializable {
     }
 
     public byte[] getFileById(Integer id) {//returns null if there is no existing file
-        String filename = idAndFilenames.get(id);
+        String filename = idAndFilenames.get(id); //no need to synchronize, because there code don't change anything before to get getFileByName - other synchronized method
         if(filename == null) { //no existing file
             return null;
         }
         return getFileByName(filename);
     }
 
-    public byte[] getFileByName(String filename) {
+    public synchronized byte[] getFileByName(String filename) {
         File file = new File(storageFolder + File.separator + filename);
         byte[] fileAsByteArray = new byte[(int) file.length()];
         try {
