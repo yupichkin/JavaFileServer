@@ -1,6 +1,6 @@
 # JavaFileServer
 Simple project with server and client communication via sockets
-##Commands - 
+## Commands 
 ### PUT(create a file on server)
 client sends file to server
 
